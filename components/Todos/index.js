@@ -23,12 +23,11 @@ class Todos extends React.Component {
   };
 
   render() {
-    console.log(this.props.todos);
     return (
       <SafeAreaView style={styles.container}>
-        {this.props.todos.length > 0 && (
+        {this.props.todo.todos.length > 0 && (
           <FlatList
-            data={this.props.todos}
+            data={this.props.todo.todos}
             renderItem={this.renderTodo}
             keyExtractor={(todo) => todo.id.toString()}
             ListEmptyComponent={<Text>Nothing</Text>}
