@@ -1,16 +1,14 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-import {connect} from 'react-redux';
+import React from "react";
+import { View } from "react-native";
+import InputBoxes from "../InputBoxes";
+import Todos from "../Todos";
 const MainView = () => {
-    return (
-        <View>
-            <Text>Hello World</Text>
-        </View>
-    );
-}
+  return (
+    <View>
+      <InputBoxes />
+      <Todos />
+    </View>
+  );
+};
 
-const mapStateToProps = (state) => {
-    return state;
-}
-
-export default connect(mapStateToProps)(MainView);
+export default MainView;

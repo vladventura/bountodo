@@ -1,25 +1,51 @@
-import { CREATE_TODO, DELETE_TODO } from "../actions/";
+import {
+  CREATE_TODO,
+  DELETE_TODO,
+  CHANGE_CURRENT_NAME,
+  CHANGE_CURRENT_DESCRIPTION,
+} from "../actions/";
 
 let initialState = {
   todos: [],
+  todo: {
+    name: "",
+    description: "",
+    id: 0,
+  },
 };
 
 const rootReducer = (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case CREATE_TODO:
-      let addingList = state.todos;
-      addingList.push(action.payload);
-      return {
-        ...state,
-        todos: addingList,
-      };
+      if (state.todo.name !== "" && state.todo.description !== "") {
+        return {
+          ...state,
+          todos: [
+            ...state.todos,
+            {
+              ...state.todo,
+              id: state.todos.length + 1,
+            },
+          ],
+        };
+      } else return state;
+
     case DELETE_TODO:
-      let removingList = state.todos.filter(
-        (todo) => todo.name !== action.payload.name
-      );
       return {
         ...state,
-        todos: removingList,
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
+      };
+    case CHANGE_CURRENT_NAME:
+      let nameChange = { ...state.todo, name: action.payload };
+      return {
+        ...state,
+        todo: nameChange,
+      };
+    case CHANGE_CURRENT_DESCRIPTION:
+      let newTodo = { ...state.todo, description: action.payload };
+      return {
+        ...state,
+        todo: { ...newTodo },
       };
     default:
       return state;

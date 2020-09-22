@@ -1,19 +1,41 @@
-import { CREATE_TODO, DELETE_TODO } from "./";
+import {
+  CREATE_TODO,
+  DELETE_TODO,
+  CHANGE_CURRENT_NAME,
+  CHANGE_CURRENT_DESCRIPTION,
+} from "./";
 
-export const createTodo = (todo) => {
+export const createTodo = () => {
   return (dispatch, getState) => {
     dispatch({
       type: CREATE_TODO,
-      payload: todo,
     });
   };
 };
 
-export const deleteTodo = (todo) => {
+export const deleteTodo = (id) => {
   return (dispatch, getState) => {
     dispatch({
       type: DELETE_TODO,
-      payload: todo,
+      payload: id,
+    });
+  };
+};
+
+export const changeName = (name) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: CHANGE_CURRENT_NAME,
+      payload: name,
+    });
+  };
+};
+
+export const changeDescription = (description) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: CHANGE_CURRENT_DESCRIPTION,
+      payload: description,
     });
   };
 };
