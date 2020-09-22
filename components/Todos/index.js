@@ -20,7 +20,10 @@ class Todos extends React.Component {
         <Button title="Remove" onPress={() => this.props.deleteTodo(item.id)} />
         <Button
           title="Finish Bounty"
-          onPress={() => this.props.finishedTodo(item)}
+          onPress={() => {
+            this.props.finishedTodo(item);
+            this.props.deleteTodo(item.id);
+          }}
         />
       </View>
     );
