@@ -9,7 +9,7 @@ import {
   Button,
 } from "react-native";
 import { connect } from "react-redux";
-import { deleteTodo } from "../../store/actions/todoActions";
+import { deleteTodo, finishedTodo } from "../../store/actions/todoActions";
 
 class Todos extends React.Component {
   renderTodo = ({ item }) => {
@@ -18,17 +18,20 @@ class Todos extends React.Component {
         <Text style={styles.title}>Name: {item.name}</Text>
         <Text style={styles.title}>Description: {item.description}</Text>
         <Button title="Remove" onPress={() => this.props.deleteTodo(item.id)} />
+        <Button
+          title="Finish Bounty"
+          onPress={() => this.props.finishedTodo(item)}
+        />
       </View>
     );
   };
 
   render() {
-    console.log(this.props.todos);
     return (
       <SafeAreaView style={styles.container}>
-        {this.props.todos.length > 0 && (
+        {this.props.todo.todos.length > 0 && (
           <FlatList
-            data={this.props.todos}
+            data={this.props.todo.todos}
             renderItem={this.renderTodo}
             keyExtractor={(todo) => todo.id.toString()}
             ListEmptyComponent={<Text>Nothing</Text>}
@@ -48,6 +51,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteTodo: (id) => dispatch(deleteTodo(id)),
+    finishedTodo: (todo) => dispatch(finishedTodo(todo)),
   };
 };
 
