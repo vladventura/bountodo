@@ -4,3 +4,6 @@ export const LOAD_TODOS = "LOAD_TODOS"; // Just in case we want them on the web
 
 export const CHANGE_CURRENT_NAME = "CHANGE_CURRENT_NAME";
 export const CHANGE_CURRENT_DESCRIPTION = "CHANGE_CURRENT_DESCRIPTION";
+
+export const ADD_GOLD = "ADD_GOLD";
+export const ADD_FAME = "ADD_FAME";
