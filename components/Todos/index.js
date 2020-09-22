@@ -14,14 +14,17 @@ import { deleteTodo, finishedTodo } from "../../store/actions/todoActions";
 class Todos extends React.Component {
   renderTodo = ({ item }) => {
     return (
-      <View style={styles.item}>
+      <View style={[styles.item, { backgroundColor: item.rarity.color }]}>
         <Text style={styles.title}>Name: {item.name}</Text>
         <Text style={styles.title}>Description: {item.description}</Text>
-        <Button title="Remove" onPress={() => this.props.deleteTodo(item.id)} />
         <Button
           title="Finish Bounty"
-          onPress={() => this.props.finishedTodo(item)}
+          onPress={() => {
+            this.props.finishedTodo(item);
+            this.props.deleteTodo(item.id);
+          }}
         />
+        <Button title="Remove" onPress={() => this.props.deleteTodo(item.id)} />
       </View>
     );
   };
