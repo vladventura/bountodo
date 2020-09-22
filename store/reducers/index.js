@@ -7,19 +7,19 @@ let initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.payload) {
     case CREATE_TODO:
-      let newList = state.todos;
-      newList.push(action.payload);
+      let addingList = state.todos;
+      addingList.push(action.payload);
       return {
         ...state,
-        todos: newList,
+        todos: addingList,
       };
     case DELETE_TODO:
-      let newList = state.todos.filter(
+      let removingList = state.todos.filter(
         (todo) => todo.name !== action.payload.name
       );
       return {
         ...state,
-        todos: newList,
+        todos: removingList,
       };
     default:
       return state;
