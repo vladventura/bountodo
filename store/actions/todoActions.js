@@ -4,6 +4,7 @@ import {
   CHANGE_CURRENT_NAME,
   CHANGE_CURRENT_DESCRIPTION,
   FINISHED_TODO,
+  SET_RARITY,
 } from "./";
 
 export const createTodo = () => {
@@ -45,10 +46,18 @@ export const finishedTodo = (todo) => {
   return (dispatch, getState) => {
     let fame = _getRandomInt(todo.rarity.minFame, todo.rarity.maxFame);
     let gold = _getRandomInt(todo.rarity.minGold, todo.rarity.maxGold);
-    deleteTodo(todo.id);
     dispatch({
       type: FINISHED_TODO,
       payload: { fame, gold },
+    });
+  };
+};
+
+export const setRarity = (rarity) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: SET_RARITY,
+      payload: rarity,
     });
   };
 };
