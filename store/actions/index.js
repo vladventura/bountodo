@@ -9,3 +9,4 @@ export const ADD_GOLD = "ADD_GOLD";
 export const ADD_FAME = "ADD_FAME";
 
 export const FINISHED_TODO = "FINISHED_TODO";
+export const SET_RARITY = "SET_RARITY";
