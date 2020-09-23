@@ -1,4 +1,4 @@
-const { ADD_GOLD, ADD_FAME, FINISHED_TODO } = require("../actions");
+const { ADD_GOLD, ADD_FAME, FINISHED_TODO, LOAD_DATA } = require("../actions");
 
 let initialState = {
   gold: 0,
@@ -22,6 +22,12 @@ const playerReducer = (state = initialState, action) => {
         ...state,
         fame: state.fame + action.payload.fame,
         gold: state.gold + action.payload.gold,
+      };
+    case LOAD_DATA:
+      return {
+        ...state,
+        fame: action.payload.fame,
+        gold: action.payload.gold,
       };
     default:
       return state;

@@ -9,22 +9,30 @@ import {
   Button,
 } from "react-native";
 import { connect } from "react-redux";
+import { saveData } from "../../store/actions/globalActions";
 import { deleteTodo, finishedTodo } from "../../store/actions/todoActions";
 
 class Todos extends React.Component {
   renderTodo = ({ item }) => {
     return (
       <View style={[styles.item, { backgroundColor: item.rarity.color }]}>
-        <Text style={styles.title}>Name: {item.name}</Text>
-        <Text style={styles.title}>Description: {item.description}</Text>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.title}>{item.description}</Text>
         <Button
           title="Finish Bounty"
           onPress={() => {
             this.props.finishedTodo(item);
             this.props.deleteTodo(item.id);
+            this.props.saveData();
           }}
         />
-        <Button title="Remove" onPress={() => this.props.deleteTodo(item.id)} />
+        <Button
+          title="Remove"
+          onPress={() => {
+            this.props.deleteTodo(item.id);
+            this.props.saveData();
+          }}
+        />
       </View>
     );
   };
@@ -55,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteTodo: (id) => dispatch(deleteTodo(id)),
     finishedTodo: (todo) => dispatch(finishedTodo(todo)),
+    saveData: () => dispatch(saveData()),
   };
 };
 
