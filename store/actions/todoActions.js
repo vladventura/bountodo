@@ -5,7 +5,11 @@ import {
   CHANGE_CURRENT_DESCRIPTION,
   FINISHED_TODO,
   SET_RARITY,
+  VALID,
+  INVALID,
 } from "./";
+
+import { ERRORS as ers, META as mt } from "../../constants";
 
 export const createTodo = () => {
   return (dispatch, getState) => {
@@ -58,6 +62,33 @@ export const setRarity = (rarity) => {
     dispatch({
       type: SET_RARITY,
       payload: rarity,
+    });
+  };
+};
+
+export const validate = () => {
+  return (dispatch, getState) => {
+    let currentState = getState();
+    let { name, description, rarity } = currentState.todo.todo;
+    let errors = [];
+
+    if (name === "") errors.push(ers.emptyName);
+    if (name.length > mt.nameMaxChars) errors.push(ers.nameOver);
+    if (name.length < mt.nameMinChars) errors.push(ers.nameUnder);
+
+    if (description === "") errors.push(ers.emptyDescription);
+    if (description.length > mt.descriptionMaxChars)
+      errors.push(ers.descriptionOver);
+    if (description.length < mt.descriptionMinChars)
+      errors.push(ers.descriptionUnder);
+
+    if (!rarity || !rarity?.name) errors.push(ers.noRarity);
+
+    let errorString = errors.length > 1 ? errors.join("\n") : errors[0] || "";
+
+    dispatch({
+      type: errorString !== "" ? VALID : INVALID,
+      error: errorString,
     });
   };
 };
