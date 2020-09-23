@@ -6,7 +6,14 @@ import Todos from "../Todos";
 import RarityPicker from "../RarityPicker";
 import GoldFameBar from "../GoldFameBar";
 
-const MainView = () => {
+import { connect } from "react-redux";
+import { loadData } from "../../store/actions/globalActions";
+
+const MainView = (props) => {
+  // comnponentDidMount
+  React.useEffect(() => {
+    props.loadData();
+  }, []);
   return (
     <View>
       <GoldFameBar />
@@ -17,4 +24,10 @@ const MainView = () => {
   );
 };
 
-export default MainView;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadData: () => dispatch(loadData()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(MainView);

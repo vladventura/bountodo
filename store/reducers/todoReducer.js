@@ -4,6 +4,7 @@ import {
   CHANGE_CURRENT_NAME,
   CHANGE_CURRENT_DESCRIPTION,
   SET_RARITY,
+  LOAD_DATA,
 } from "../actions/";
 
 let initialState = {
@@ -55,6 +56,11 @@ const todoReducer = (state = initialState, action) => {
           ...state.todo,
           rarity: action.payload,
         },
+      };
+    case LOAD_DATA:
+      return {
+        ...state,
+        todos: action.payload.todos,
       };
     default:
       return state;
