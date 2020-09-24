@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, SafeAreaView, View, StatusBar } from "react-native";
+import { Alert, View, StatusBar, Button } from "react-native";
 
 import InputBoxes from "../InputBoxes";
 import Todos from "../Todos";
@@ -39,6 +39,7 @@ class MainView extends React.Component {
     );
 
   render() {
+
     return (
       <View
         style={{
@@ -53,6 +54,12 @@ class MainView extends React.Component {
           <GoldFameBar />
           <InputBoxes />
           <RarityPicker />
+          <Button
+            title="TO SHOP"
+            onPress={() => {
+              this.props.history.push("/shop");
+            }}
+          />
           <Todos />
         </View>
       </View>
