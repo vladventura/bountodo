@@ -7,7 +7,6 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers";
 
-// import { NativeRouter, Route } from "react-router-native";
 import { ROUTES } from "./constants";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
