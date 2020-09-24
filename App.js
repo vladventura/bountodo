@@ -1,5 +1,5 @@
 import React from "react";
-import MainView from "./components/MainView";
+import TodoPage from "./components/TodoPage";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -14,7 +14,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NativeRouter>
-        <Route exact path="/" component={MainView} />
+        <Route exact path="/" component={TodoPage} />
       </NativeRouter>
     </Provider>
   );
