@@ -5,6 +5,8 @@ import {
   CHANGE_CURRENT_DESCRIPTION,
   SET_RARITY,
   LOAD_DATA,
+  INVALID,
+  DISMISS_ERRORS,
 } from "../actions/";
 
 let initialState = {
@@ -61,6 +63,16 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         todos: action.payload.todos,
+      };
+    case INVALID:
+      return {
+        ...state,
+        errors: action.err,
+      };
+    case DISMISS_ERRORS:
+      return {
+        ...state,
+        errors: null,
       };
     default:
       return state;

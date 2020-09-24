@@ -14,3 +14,7 @@ export const ADD_FAME = "ADD_FAME";
 
 export const FINISHED_TODO = "FINISHED_TODO";
 export const SET_RARITY = "SET_RARITY";
+
+export const VALID = "VALID";
+export const INVALID = "INVALID";
+export const DISMISS_ERRORS = "DISMISS_ERRORS";
