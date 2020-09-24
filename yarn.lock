@@ -1259,10 +1259,10 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
-"@react-native-community/picker@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/picker/-/picker-1.8.0.tgz#32425321af1e29e3da882fbd627a71ea142c75e4"
-  integrity sha512-aS506wjynNzKDZjynlDasbc665GKGHdhrCob9KdOprPFlE+zMnoR3k0Ce0OkIuGHcY/GMVvQqTc+LYVm2UOmbg==
+"@react-native-community/picker@1.6.6":
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/@react-native-community/picker/-/picker-1.6.6.tgz#827edfbcb6c2e3f6f5c68674f52249fd7d03a0bc"
+  integrity sha512-R2QUEcpdOClgvCsTUzfJcb/qcRy40ikHoJslvnRRj2iP8zCaB1k/3XK3JKCo3e+Alux1fR5o7edlDOIOtwx1YQ==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -2417,7 +2417,7 @@ expo-asset@~8.2.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-constants@~9.2.0:
+expo-constants@^9.2.0, expo-constants@~9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.2.0.tgz#e86a38793deaff9018878afac65bce2543c80a4c"
   integrity sha512-WKwiEMvBgPrEPEyZKm21UUB2KWQux9OCWf6ZDORLTln7kO3rsbaJEprfWUWTP7AxyaLMYfN+/0WFHjZc25SZWQ==
@@ -2491,7 +2491,7 @@ expo-sqlite@~8.4.0:
     "@expo/websql" "^1.0.1"
     lodash "^4.17.15"
 
-expo-status-bar@~1.0.2:
+expo-status-bar@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.0.2.tgz#2441a77c56be31597898337b0d086981f2adefd8"
   integrity sha512-5313u744GcLzCadxIPXyTkYw77++UXv1dXCuhYDxDbtsEf93iMra7WSvzyE8a7mRQLIIPRuGnBOdrL/V1C7EOQ==

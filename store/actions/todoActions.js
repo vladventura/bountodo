@@ -5,16 +5,34 @@ import {
   CHANGE_CURRENT_DESCRIPTION,
   FINISHED_TODO,
   SET_RARITY,
-  VALID,
   INVALID,
+  DISMISS_ERRORS,
 } from "./";
 
 import { ERRORS as ers, META as mt } from "../../constants";
 
 export const createTodo = () => {
   return (dispatch, getState) => {
+    let currentState = getState();
+    let errors = _validate(currentState);
+    console.log("From the create action ", errors);
+    if (errors === "") {
+      dispatch({
+        type: CREATE_TODO,
+      });
+    } else {
+      dispatch({
+        type: INVALID,
+        err: errors,
+      });
+    }
+  };
+};
+
+export const dismissErrors = () => {
+  return (dispatch, getState) => {
     dispatch({
-      type: CREATE_TODO,
+      type: DISMISS_ERRORS,
     });
   };
 };
@@ -66,31 +84,25 @@ export const setRarity = (rarity) => {
   };
 };
 
-export const validate = () => {
-  return (dispatch, getState) => {
-    let currentState = getState();
-    let { name, description, rarity } = currentState.todo.todo;
-    let errors = [];
+const _validate = (currentState) => {
+  let { name, description, rarity } = currentState.todo.todo;
+  let errors = [];
 
-    if (name === "") errors.push(ers.emptyName);
-    if (name.length > mt.nameMaxChars) errors.push(ers.nameOver);
-    if (name.length < mt.nameMinChars) errors.push(ers.nameUnder);
+  if (name === "") errors.push(ers.emptyName);
+  else if (name.length > mt.nameMaxChars) errors.push(ers.nameOver);
+  else if (name.length < mt.nameMinChars) errors.push(ers.nameUnder);
 
-    if (description === "") errors.push(ers.emptyDescription);
-    if (description.length > mt.descriptionMaxChars)
-      errors.push(ers.descriptionOver);
-    if (description.length < mt.descriptionMinChars)
-      errors.push(ers.descriptionUnder);
+  if (description === "") errors.push(ers.emptyDescription);
+  else if (description.length > mt.descriptionMaxChars)
+    errors.push(ers.descriptionOver);
+  else if (description.length < mt.descriptionMinChars)
+    errors.push(ers.descriptionUnder);
 
-    if (!rarity || !rarity?.name) errors.push(ers.noRarity);
+  if (!rarity || !rarity?.name) errors.push(ers.noRarity);
 
-    let errorString = errors.length > 1 ? errors.join("\n") : errors[0] || "";
+  let errorString = errors.length > 1 ? errors.join("\n") : errors[0] || "";
 
-    dispatch({
-      type: errorString !== "" ? VALID : INVALID,
-      error: errorString,
-    });
-  };
+  return errorString;
 };
 
 const _getRandomInt = (x, y) => {

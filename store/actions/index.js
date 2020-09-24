@@ -17,3 +17,4 @@ export const SET_RARITY = "SET_RARITY";
 
 export const VALID = "VALID";
 export const INVALID = "INVALID";
+export const DISMISS_ERRORS = "DISMISS_ERRORS";
