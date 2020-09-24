@@ -4,7 +4,6 @@ export const ShopPage = (props) => {
   return (
     <View>
       <Text>SHOP PAGE ARRIVED HURDUR</Text>
-      <Button onPress={() => props.history.push("/")} title="GO BACK HOME" />
     </View>
   );
 };

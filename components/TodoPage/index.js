@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, View, StatusBar, Button } from "react-native";
+import { Alert, View, StatusBar } from "react-native";
 
 import InputBoxes from "../InputBoxes";
 import Todos from "../Todos";
@@ -12,7 +12,7 @@ import { dismissErrors } from "../../store/actions/todoActions";
 
 import Constants from "expo-constants";
 
-class MainView extends React.Component {
+class TodoPage extends React.Component {
   componentDidMount() {
     this.props.loadData();
   }
@@ -39,7 +39,6 @@ class MainView extends React.Component {
     );
 
   render() {
-
     return (
       <View
         style={{
@@ -54,12 +53,6 @@ class MainView extends React.Component {
           <GoldFameBar />
           <InputBoxes />
           <RarityPicker />
-          <Button
-            title="TO SHOP"
-            onPress={() => {
-              this.props.history.push("/shop");
-            }}
-          />
           <Todos />
         </View>
       </View>
@@ -80,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);

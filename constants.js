@@ -1,7 +1,13 @@
 export const LOCAL_STORAGE_KEY_NAME = "BOUNTODO_LOCAL_DATA";
 export const ROUTES = {
-  home: "/",
-  shop: "/shop",
+  home: {
+    name: "Todos",
+    path: "/",
+  },
+  shop: {
+    name: "Shop",
+    path: "/shop",
+  },
 };
 
 export const META = {
