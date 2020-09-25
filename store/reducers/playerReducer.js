@@ -5,6 +5,7 @@ const { ADD_GOLD, ADD_FAME, FINISHED_TODO, LOAD_DATA } = require("../actions");
 let initialState = {
   [PLAYER_ATTRS.gold]: 0,
   [PLAYER_ATTRS.fame]: 0,
+  [PLAYER_ATTRS.purchased]: [],
 };
 
 const playerReducer = (state = initialState, action) => {

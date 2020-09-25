@@ -30,4 +30,5 @@ export const ERRORS = {
 export const PLAYER_ATTRS = {
   gold: "gold",
   fame: "fame",
+  purchased: "purchased"
 };
