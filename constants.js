@@ -26,3 +26,8 @@ export const ERRORS = {
   descriptionUnder: `The ToDo's description cannot be under ${META.descriptionMinChars} characters`,
   noRarity: "Please choose a rarity from the Rarity dropdown!",
 };
+
+export const PLAYER_ATTRS = {
+  gold: "gold",
+  fame: "fame",
+};
