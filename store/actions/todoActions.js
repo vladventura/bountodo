@@ -9,7 +9,8 @@ import {
   DISMISS_ERRORS,
 } from "./";
 
-import { ERRORS as ers, META as mt } from "../../constants";
+import { ERRORS as ers, META as mt, PLAYER_ATTRS } from "../../constants";
+import { ENHANCEMENT_RATE_ALTER } from "../../shop/types";
 
 export const createTodo = () => {
   return (dispatch, getState) => {
@@ -66,8 +67,19 @@ export const changeDescription = (description) => {
 
 export const finishedTodo = (todo) => {
   return (dispatch, getState) => {
+    let currentState = getState();
     let fame = _getRandomInt(todo.rarity.minFame, todo.rarity.maxFame);
     let gold = _getRandomInt(todo.rarity.minGold, todo.rarity.maxGold);
+    console.log(currentState.player);
+    let enhRateAlt = _checkEnhRateAlt(
+      gold,
+      fame,
+      currentState.player[PLAYER_ATTRS.purchased][ENHANCEMENT_RATE_ALTER]
+    );
+
+    fame = enhRateAlt.fame;
+    gold = enhRateAlt.gold;
+
     dispatch({
       type: FINISHED_TODO,
       payload: { fame, gold },
@@ -109,4 +121,30 @@ const _getRandomInt = (x, y) => {
   let min = Math.ceil(x);
   let max = Math.floor(y) + 1;
   return Math.floor(Math.random() * (max - min) + min);
+};
+
+const _checkEnhRateAlt = (gold, fame, items) => {
+  if (items.length > 0) {
+    let currentGold = gold;
+    let currentFame = fame;
+    items.forEach((item) => {
+      switch (item.affectedValue) {
+        case "gold":
+          currentGold = item.rateFn(currentGold);
+          break;
+        case "fame":
+          currentFame = item.rateF(currentFame);
+        default:
+          break;
+      }
+    });
+    return {
+      gold: currentGold,
+      fame: currentFame,
+    };
+  }
+  return {
+    gold: gold,
+    fame: fame,
+  };
 };

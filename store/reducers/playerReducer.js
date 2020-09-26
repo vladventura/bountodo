@@ -1,10 +1,13 @@
 import { PLAYER_ATTRS } from "../../constants";
-
+import { ENHANCEMENT_RATE_ALTER } from "../../shop/types";
 const { ADD_GOLD, ADD_FAME, FINISHED_TODO, LOAD_DATA } = require("../actions");
 
 let initialState = {
   [PLAYER_ATTRS.gold]: 0,
   [PLAYER_ATTRS.fame]: 0,
+  [PLAYER_ATTRS.purchased]: {
+    [ENHANCEMENT_RATE_ALTER]: [],
+  },
 };
 
 const playerReducer = (state = initialState, action) => {
